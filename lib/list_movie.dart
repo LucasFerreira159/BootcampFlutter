@@ -1,5 +1,6 @@
 import 'package:bootcamp_flutter/movie.dart';
 import 'package:bootcamp_flutter/widgets/movie_cell.dart';
+import 'package:bootcamp_flutter/widgets/movie_detail.dart';
 import 'package:bootcamp_flutter/widgets/movie_title.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -45,7 +46,10 @@ class _MovieListState extends State<MovieList> {
                     return FlatButton(
                       child: MovieCell(movies, i),
                       padding: EdgeInsets.all(0.0),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => MovieDetails(movies[i])));
+                      },
                     );
                   },
                 ),
