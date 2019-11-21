@@ -1,8 +1,10 @@
 import 'package:bootcamp_flutter/movie.dart';
+import 'package:bootcamp_flutter/movie_details.dart';
 import 'package:bootcamp_flutter/widgets/movie_cell.dart';
 import 'package:bootcamp_flutter/widgets/movie_title.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'movie_edit.dart';
 
 class MovieList extends StatefulWidget {
   @override
@@ -45,7 +47,15 @@ class _MovieListState extends State<MovieList> {
                     return FlatButton(
                       child: MovieCell(movies, i),
                       padding: EdgeInsets.all(0.0),
-                      onPressed: () {},
+                      onPressed: () async {
+                        Movie result = await Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => MovieDetails(movies[i])));
+
+                        if (result != null) {
+                          movies[i] = result;
+                        }
+                      },
                     );
                   },
                 ),
